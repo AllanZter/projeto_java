@@ -1,13 +1,15 @@
 
-package Interface;
+package br.com.sistema.view;
 
 
-public class jfprincipal extends javax.swing.JFrame {
+
+
+public class Principal extends javax.swing.JFrame {
 
     public static boolean cadastro;
     
     
-    public jfprincipal() {
+    public Principal() {
         initComponents();
     }
 
@@ -28,8 +30,10 @@ public class jfprincipal extends javax.swing.JFrame {
         Atualizar_estoque = new javax.swing.JMenuItem();
         etiqueta = new javax.swing.JMenuItem();
         devolucao = new javax.swing.JMenuItem();
+        VendasBalcao = new javax.swing.JMenuItem();
         estoque = new javax.swing.JMenu();
         orcamento = new javax.swing.JMenuItem();
+        NovoProduto = new javax.swing.JMenuItem();
         devolucao_1 = new javax.swing.JMenu();
         cliente = new javax.swing.JMenuItem();
         movimentacao = new javax.swing.JMenu();
@@ -39,7 +43,7 @@ public class jfprincipal extends javax.swing.JFrame {
         tecla_atalho = new javax.swing.JMenu();
         menu_fiscal = new javax.swing.JMenu();
         ajuda = new javax.swing.JMenu();
-        jMenu10 = new javax.swing.JMenu();
+        Sair = new javax.swing.JMenu();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -108,12 +112,28 @@ public class jfprincipal extends javax.swing.JFrame {
         devolucao.setText("Devolução");
         frente_de_loja.add(devolucao);
 
+        VendasBalcao.setText("Vendas");
+        VendasBalcao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vender(evt);
+            }
+        });
+        frente_de_loja.add(VendasBalcao);
+
         jMenuBar1.add(frente_de_loja);
 
         estoque.setText("Estoque");
 
         orcamento.setText("Orçamento");
         estoque.add(orcamento);
+
+        NovoProduto.setText("Novo Produto");
+        NovoProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarProduto(evt);
+            }
+        });
+        estoque.add(NovoProduto);
 
         jMenuBar1.add(estoque);
 
@@ -146,8 +166,8 @@ public class jfprincipal extends javax.swing.JFrame {
         ajuda.setText("Ajuda");
         jMenuBar1.add(ajuda);
 
-        jMenu10.setText("Sair");
-        jMenuBar1.add(jMenu10);
+        Sair.setText("Sair");
+        jMenuBar1.add(Sair);
 
         setJMenuBar(jMenuBar1);
 
@@ -170,7 +190,7 @@ public class jfprincipal extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 this.setExtendedState(MAXIMIZED_BOTH);
 
-jfprincipal.cadastro = false;
+Principal.cadastro = false;
 
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
@@ -190,6 +210,16 @@ jfprincipal.cadastro = false;
         // TODO add your handling code here:
     }//GEN-LAST:event_AberturaActionPerformed
 
+    private void cadastrarProduto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarProduto
+        
+       
+    }//GEN-LAST:event_cadastrarProduto
+
+    private void vender(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vender
+        Vendas vendas = new Vendas();
+        vendas.setVisible(true);
+    }//GEN-LAST:event_vender
+
     /**
      * @param args the command line arguments
      */
@@ -207,19 +237,20 @@ jfprincipal.cadastro = false;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jfprincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jfprincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jfprincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jfprincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new jfprincipal().setVisible(true);
+            new Principal().setVisible(true);
         });
     }
 
@@ -227,7 +258,10 @@ jfprincipal.cadastro = false;
     private javax.swing.JMenuItem Abertura;
     private javax.swing.JMenuItem Atualizar_estoque;
     private javax.swing.JMenu Caixa;
+    private javax.swing.JMenuItem NovoProduto;
+    private javax.swing.JMenu Sair;
     private javax.swing.JMenuItem Sangria;
+    private javax.swing.JMenuItem VendasBalcao;
     private javax.swing.JMenu ajuda;
     private javax.swing.JMenuItem cliente;
     private javax.swing.JMenuItem cor_tela;
@@ -238,7 +272,6 @@ jfprincipal.cadastro = false;
     private javax.swing.JMenuItem fechamento;
     private javax.swing.JMenu frente_de_loja;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JDesktopPane jdpprincipal;
     private javax.swing.JMenu menu_fiscal;
