@@ -120,6 +120,12 @@ public class FormularioClientes extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
+        txtConsultar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtConsultarKeyReleased(evt);
+            }
+        });
+
         btnTabela_Pesquisar.setText("Pesquisar");
         btnTabela_Pesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -527,6 +533,33 @@ public class FormularioClientes extends javax.swing.JFrame {
         }                           
        
     }//GEN-LAST:event_btnTabela_PesquisarActionPerformed
+
+    private void txtConsultarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConsultarKeyReleased
+        String nome = "%"+txtConsultar.getText()+"%";
+        
+        ClientesDao dao = new ClientesDao();
+        List<Clientes> lista = dao.filtrar(nome);
+        DefaultTableModel dados = (DefaultTableModel) tabela.getModel();
+        dados.setNumRows(0);
+        for(Clientes c : lista){
+            dados.addRow(new Object[]{
+                c.getId(),
+                c.getNome(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getTelefone(),
+                c.getCelular(),
+                c.getCep(),
+                c.getEndereco(),
+                c.getNumero(),
+                c.getComplemento(),
+                c.getBairro(),
+                c.getCidade(),
+                c.getEstado(),
+            });
+        }                   
+    }//GEN-LAST:event_txtConsultarKeyReleased
 
     /**
      * @param args the command line arguments
