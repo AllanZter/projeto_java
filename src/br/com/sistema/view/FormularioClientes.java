@@ -3,12 +3,38 @@ package br.com.sistema.view;
 
 import br.com.sistema.dao.ClientesDao;
 import br.com.sistema.model.Clientes;
+import br.com.sistema.ultilitarios.Ultilitarios;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class FormularioClientes extends javax.swing.JFrame {
 
-   
+    public void listar(){
+        ClientesDao dao = new ClientesDao();
+        List<Clientes> lista = dao.listar();
+        DefaultTableModel dados = (DefaultTableModel) tabela.getModel();
+        dados.setNumRows(0);
+        for(Clientes c : lista){
+            dados.addRow(new Object[]{
+                c.getId(),
+                c.getNome(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getTelefone(),
+                c.getCelular(),
+                c.getCep(),
+                c.getEndereco(),
+                c.getNumero(),
+                c.getComplemento(),
+                c.getBairro(),
+                c.getCidade(),
+                c.getEstado(),
+            });
+        }                                  
+    } 
     public FormularioClientes() {
         initComponents();
     }
@@ -22,10 +48,10 @@ public class FormularioClientes extends javax.swing.JFrame {
         tpConsultarClientes = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         txtConsultar = new javax.swing.JTextField();
-        btnConsultar = new javax.swing.JButton();
+        btnTabela_Pesquisar = new javax.swing.JButton();
         cbConsultar = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbConsultarClientes = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         Dados_Clientes = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
@@ -65,6 +91,11 @@ public class FormularioClientes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -89,11 +120,16 @@ public class FormularioClientes extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        btnConsultar.setText("Pesquisar");
+        btnTabela_Pesquisar.setText("Pesquisar");
+        btnTabela_Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTabela_PesquisarActionPerformed(evt);
+            }
+        });
 
         cbConsultar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "RG", "CPF", "ID", "CNPJ", "RAZAO SOCIAL" }));
 
-        tbConsultarClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -101,7 +137,7 @@ public class FormularioClientes extends javax.swing.JFrame {
                 "id", "nome", "rg", "cpf", "email", "telefone", "celular", "cep", "endereco", "numero", "complemento", "bairro", "cidade", "estado"
             }
         ));
-        jScrollPane1.setViewportView(tbConsultarClientes);
+        jScrollPane1.setViewportView(tabela);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -116,7 +152,7 @@ public class FormularioClientes extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnConsultar)
+                        .addComponent(btnTabela_Pesquisar)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -126,7 +162,7 @@ public class FormularioClientes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsultar)
+                    .addComponent(btnTabela_Pesquisar)
                     .addComponent(cbConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,6 +172,8 @@ public class FormularioClientes extends javax.swing.JFrame {
         tpConsultarClientes.addTab("Consultar Clientes", jPanel4);
 
         jLabel2.setText("Codigo:");
+
+        txtCodigo.setEditable(false);
 
         jLabel3.setText("Nome:");
 
@@ -320,6 +358,11 @@ public class FormularioClientes extends javax.swing.JFrame {
         tpConsultarClientes.addTab("Dados Pessoais", Dados_Clientes);
 
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sistema/images/Novo.png"))); // NOI18N
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovo(evt);
+            }
+        });
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sistema/images/Salvar (1).png"))); // NOI18N
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -396,6 +439,7 @@ public class FormularioClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        Ultilitarios util = new Ultilitarios();
         Clientes obj = new Clientes();
         obj.setNome(txtNome.getText());
         obj.setRg(txtRG.getText());
@@ -413,6 +457,7 @@ public class FormularioClientes extends javax.swing.JFrame {
         
         ClientesDao dao = new ClientesDao();
         dao.salvar(obj);
+        util.limparTela(Dados_Clientes);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -445,6 +490,43 @@ public class FormularioClientes extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnNovo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovo
+        Ultilitarios util = new Ultilitarios();
+        util.limparTela(Dados_Clientes);
+    }//GEN-LAST:event_btnNovo
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        listar();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void btnTabela_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTabela_PesquisarActionPerformed
+        String nome = "%"+txtConsultar.getText()+"%";
+        
+        ClientesDao dao = new ClientesDao();
+        List<Clientes> lista = dao.filtrar(nome);
+        DefaultTableModel dados = (DefaultTableModel) tabela.getModel();
+        dados.setNumRows(0);
+        for(Clientes c : lista){
+            dados.addRow(new Object[]{
+                c.getId(),
+                c.getNome(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getTelefone(),
+                c.getCelular(),
+                c.getCep(),
+                c.getEndereco(),
+                c.getNumero(),
+                c.getComplemento(),
+                c.getBairro(),
+                c.getCidade(),
+                c.getEstado(),
+            });
+        }                           
+       
+    }//GEN-LAST:event_btnTabela_PesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -484,7 +566,6 @@ public class FormularioClientes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Dados_Clientes;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnImprimir;
@@ -492,6 +573,7 @@ public class FormularioClientes extends javax.swing.JFrame {
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnTabela_Pesquisar;
     private javax.swing.JComboBox<String> cbConsultar;
     private javax.swing.JComboBox<String> cbUF;
     private javax.swing.JLabel jLabel1;
@@ -511,7 +593,7 @@ public class FormularioClientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbConsultarClientes;
+    private javax.swing.JTable tabela;
     private javax.swing.JTabbedPane tpConsultarClientes;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCEP;
