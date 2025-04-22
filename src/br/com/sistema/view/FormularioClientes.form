@@ -3,6 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" value="Formul&#xe1;rio de Cadastro de Clientes"/>
     <Property name="resizable" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
       <Connection code="false" type="code"/>
     </Property>
@@ -32,7 +33,7 @@
           <Component id="jPanel1" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tpConsultarClientes" max="32767" attributes="0"/>
+              <Component id="Painel_Guias" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -59,7 +60,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="tpConsultarClientes" min="-2" pref="264" max="-2" attributes="0"/>
+              <Component id="Painel_Guias" min="-2" pref="264" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -124,7 +125,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JTabbedPane" name="tpConsultarClientes">
+    <Container class="javax.swing.JTabbedPane" name="Painel_Guias">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -309,6 +310,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelaMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -666,6 +670,9 @@
           <Image iconType="3" name="/br/com/sistema/images/Excluir.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnImprimir">
       <Properties>

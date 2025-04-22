@@ -19,31 +19,21 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jdpprincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        Caixa = new javax.swing.JMenu();
-        Abertura = new javax.swing.JMenuItem();
-        Sangria = new javax.swing.JMenuItem();
-        reforco = new javax.swing.JMenuItem();
-        fechamento = new javax.swing.JMenuItem();
-        frente_de_loja = new javax.swing.JMenu();
-        Atualizar_estoque = new javax.swing.JMenuItem();
-        etiqueta = new javax.swing.JMenuItem();
-        devolucao = new javax.swing.JMenuItem();
-        VendasBalcao = new javax.swing.JMenuItem();
-        estoque = new javax.swing.JMenu();
-        orcamento = new javax.swing.JMenuItem();
-        NovoProduto = new javax.swing.JMenuItem();
-        devolucao_1 = new javax.swing.JMenu();
-        cliente = new javax.swing.JMenuItem();
-        movimentacao = new javax.swing.JMenu();
-        tam_tela = new javax.swing.JMenuItem();
-        cor_tela = new javax.swing.JMenuItem();
-        outra_opcao = new javax.swing.JMenu();
-        tecla_atalho = new javax.swing.JMenu();
-        menu_fiscal = new javax.swing.JMenu();
-        ajuda = new javax.swing.JMenu();
-        Sair = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
+        menuCaixa = new javax.swing.JMenu();
+        AbrirCaixa = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        itemFecharCaixa = new javax.swing.JMenuItem();
+        itemVendas = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        itemClientes = new javax.swing.JMenuItem();
+        itemFuncionarios = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -64,110 +54,76 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jdpprincipalLayout = new javax.swing.GroupLayout(jdpprincipal);
-        jdpprincipal.setLayout(jdpprincipalLayout);
-        jdpprincipalLayout.setHorizontalGroup(
-            jdpprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 990, Short.MAX_VALUE)
-        );
-        jdpprincipalLayout.setVerticalGroup(
-            jdpprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 759, Short.MAX_VALUE)
-        );
+        jMenuBar1.setBorder(null);
 
-        Caixa.setText("Caixa");
+        jMenu1.setText("Sair");
+        jMenuBar1.add(jMenu1);
 
-        Abertura.setText("Abertura");
-        Abertura.addActionListener(new java.awt.event.ActionListener() {
+        menuCaixa.setText("Caixa");
+
+        AbrirCaixa.setText("Abertura de Caixa");
+        AbrirCaixa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AberturaActionPerformed(evt);
+                AbrirCaixaActionPerformed(evt);
             }
         });
-        Caixa.add(Abertura);
+        menuCaixa.add(AbrirCaixa);
 
-        Sangria.setText("Sangria");
-        Caixa.add(Sangria);
+        jMenuItem2.setText("Sangria");
+        menuCaixa.add(jMenuItem2);
 
-        reforco.setText("Reforço");
-        Caixa.add(reforco);
+        jMenuItem3.setText("Reforço");
+        menuCaixa.add(jMenuItem3);
 
-        fechamento.setText("Fechamento");
-        Caixa.add(fechamento);
-
-        jMenuBar1.add(Caixa);
-
-        frente_de_loja.setText("Frente de Loja");
-
-        Atualizar_estoque.setText("Atualizar Estoque");
-        frente_de_loja.add(Atualizar_estoque);
-
-        etiqueta.setText("impressão de etiquetas");
-        etiqueta.addActionListener(new java.awt.event.ActionListener() {
+        itemFecharCaixa.setText("Fechamento de Caixa");
+        itemFecharCaixa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                etiquetaActionPerformed(evt);
+                itemFecharCaixaActionPerformed(evt);
             }
         });
-        frente_de_loja.add(etiqueta);
+        menuCaixa.add(itemFecharCaixa);
 
-        devolucao.setText("Devolução");
-        frente_de_loja.add(devolucao);
-
-        VendasBalcao.setText("Vendas");
-        VendasBalcao.addActionListener(new java.awt.event.ActionListener() {
+        itemVendas.setText("Vendas Balcão");
+        itemVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vender(evt);
+                itemVendasActionPerformed(evt);
             }
         });
-        frente_de_loja.add(VendasBalcao);
+        menuCaixa.add(itemVendas);
 
-        jMenuBar1.add(frente_de_loja);
+        jMenuItem1.setText("Recebimentos");
+        menuCaixa.add(jMenuItem1);
 
-        estoque.setText("Estoque");
+        jMenuBar1.add(menuCaixa);
 
-        orcamento.setText("Orçamento");
-        estoque.add(orcamento);
+        jMenu2.setText("Cadastro");
 
-        NovoProduto.setText("Novo Produto");
-        NovoProduto.addActionListener(new java.awt.event.ActionListener() {
+        itemClientes.setText("Clientes");
+        itemClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrarProduto(evt);
+                itemClientesActionPerformed(evt);
             }
         });
-        estoque.add(NovoProduto);
+        jMenu2.add(itemClientes);
 
-        jMenuBar1.add(estoque);
+        itemFuncionarios.setText("Funcionários");
+        itemFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemFuncionariosActionPerformed(evt);
+            }
+        });
+        jMenu2.add(itemFuncionarios);
 
-        devolucao_1.setText("Devolução");
+        jMenuItem6.setText("Fornecedor");
+        jMenu2.add(jMenuItem6);
 
-        cliente.setText("Clientes");
-        devolucao_1.add(cliente);
+        jMenuBar1.add(jMenu2);
 
-        jMenuBar1.add(devolucao_1);
+        jMenu3.setText("Estoque");
+        jMenuBar1.add(jMenu3);
 
-        movimentacao.setText("movimentação");
-
-        tam_tela.setText("Tamanho Tela");
-        movimentacao.add(tam_tela);
-
-        cor_tela.setText("Cor da tela");
-        movimentacao.add(cor_tela);
-
-        jMenuBar1.add(movimentacao);
-
-        outra_opcao.setText("Outras Opções");
-        jMenuBar1.add(outra_opcao);
-
-        tecla_atalho.setText("Teclas de Atalho");
-        jMenuBar1.add(tecla_atalho);
-
-        menu_fiscal.setText("Menu Fiscal");
-        jMenuBar1.add(menu_fiscal);
-
-        ajuda.setText("Ajuda");
-        jMenuBar1.add(ajuda);
-
-        Sair.setText("Sair");
-        jMenuBar1.add(Sair);
+        jMenu4.setText("Relátorios");
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -175,13 +131,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdpprincipal, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGap(0, 1998, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jdpprincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 1118, Short.MAX_VALUE)
         );
 
         pack();
@@ -195,30 +149,38 @@ Principal.cadastro = false;
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
 
-    private void etiquetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etiquetaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_etiquetaActionPerformed
+    private void AbrirCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirCaixaActionPerformed
+        AbrirCaixa abertura = new AbrirCaixa();
+        abertura.setVisible(true);
+    }//GEN-LAST:event_AbrirCaixaActionPerformed
 
-    private void AberturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AberturaActionPerformed
+    private void itemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClientesActionPerformed
+        FormularioClientes clientes = new FormularioClientes();
+        clientes.setVisible(true);
+    }//GEN-LAST:event_itemClientesActionPerformed
 
-        if(cadastro==false){
-            jifcadastro obj = new jifcadastro();
-            jdpprincipal.add(obj);
-            obj.setVisible(true);
+    private void itemVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVendasActionPerformed
+        Vendas balcao = new Vendas();
+        balcao.setVisible(true);
+    }//GEN-LAST:event_itemVendasActionPerformed
 
-        }//fim do if
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AberturaActionPerformed
+    private void itemFecharCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFecharCaixaActionPerformed
+        FecharCaixa fechamento = new FecharCaixa();
+        fechamento.setVisible(true);
+    }//GEN-LAST:event_itemFecharCaixaActionPerformed
 
-    private void cadastrarProduto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarProduto
-        
-       
-    }//GEN-LAST:event_cadastrarProduto
+    private void itemFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFuncionariosActionPerformed
+        FormularioFuncinarios funcionarios = new FormularioFuncinarios();
+        funcionarios.setVisible(true);
+    }//GEN-LAST:event_itemFuncionariosActionPerformed
+    // TODO add your handling code here:
+    // TODO add your handling code here:
 
-    private void vender(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vender
-        Vendas vendas = new Vendas();
-        vendas.setVisible(true);
-    }//GEN-LAST:event_vender
+    
+                                 
+
+                         
+                          
 
     /**
      * @param args the command line arguments
@@ -255,31 +217,21 @@ Principal.cadastro = false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem Abertura;
-    private javax.swing.JMenuItem Atualizar_estoque;
-    private javax.swing.JMenu Caixa;
-    private javax.swing.JMenuItem NovoProduto;
-    private javax.swing.JMenu Sair;
-    private javax.swing.JMenuItem Sangria;
-    private javax.swing.JMenuItem VendasBalcao;
-    private javax.swing.JMenu ajuda;
-    private javax.swing.JMenuItem cliente;
-    private javax.swing.JMenuItem cor_tela;
-    private javax.swing.JMenuItem devolucao;
-    private javax.swing.JMenu devolucao_1;
-    private javax.swing.JMenu estoque;
-    private javax.swing.JMenuItem etiqueta;
-    private javax.swing.JMenuItem fechamento;
-    private javax.swing.JMenu frente_de_loja;
+    private javax.swing.JMenuItem AbrirCaixa;
+    private javax.swing.JMenuItem itemClientes;
+    private javax.swing.JMenuItem itemFecharCaixa;
+    private javax.swing.JMenuItem itemFuncionarios;
+    private javax.swing.JMenuItem itemVendas;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JDesktopPane jdpprincipal;
-    private javax.swing.JMenu menu_fiscal;
-    private javax.swing.JMenu movimentacao;
-    private javax.swing.JMenuItem orcamento;
-    private javax.swing.JMenu outra_opcao;
-    private javax.swing.JMenuItem reforco;
-    private javax.swing.JMenuItem tam_tela;
-    private javax.swing.JMenu tecla_atalho;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenu menuCaixa;
     // End of variables declaration//GEN-END:variables
 }

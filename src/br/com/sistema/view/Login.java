@@ -4,6 +4,8 @@
  */
 package br.com.sistema.view;
 
+import br.com.sistema.dao.FuncionariosDao;
+import br.com.sistema.model.Funcionarios;
 import javax.swing.JOptionPane;
 
 /**
@@ -102,18 +104,20 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void login(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login
-        String username = UserText.getText();
-        String password = new String(PasswordText.getPassword());
+        try {
+            String apelido,senha;
+            apelido = UserText.getText();
+            senha = PasswordText.getText();
+            FuncionariosDao dao = new FuncionariosDao();
+            dao.EfetuarLogin(apelido, senha);
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Erro ao efetuar login" + e);
+        }
         
-        if(username.equals("Allan") && password.equals("1234")){
-           Principal tela = new Principal();
-           tela.setVisible(true);
-           this.dispose(); 
-        }
-        else{
-            System.out.println("Invalido");
-            JOptionPane.showMessageDialog(this, "Usuário ou senha inválidos", "Erro de login", JOptionPane.ERROR_MESSAGE);
-        }
+        
+        
+       
         
     }//GEN-LAST:event_login
 

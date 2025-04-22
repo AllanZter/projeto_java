@@ -45,7 +45,7 @@ public class FormularioClientes extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        tpConsultarClientes = new javax.swing.JTabbedPane();
+        Painel_Guias = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         txtConsultar = new javax.swing.JTextField();
         btnTabela_Pesquisar = new javax.swing.JButton();
@@ -90,6 +90,7 @@ public class FormularioClientes extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Formulário de Cadastro de Clientes");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -143,6 +144,11 @@ public class FormularioClientes extends javax.swing.JFrame {
                 "id", "nome", "rg", "cpf", "email", "telefone", "celular", "cep", "endereco", "numero", "complemento", "bairro", "cidade", "estado"
             }
         ));
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -175,7 +181,7 @@ public class FormularioClientes extends javax.swing.JFrame {
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        tpConsultarClientes.addTab("Consultar Clientes", jPanel4);
+        Painel_Guias.addTab("Consultar Clientes", jPanel4);
 
         jLabel2.setText("Codigo:");
 
@@ -361,7 +367,7 @@ public class FormularioClientes extends javax.swing.JFrame {
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
-        tpConsultarClientes.addTab("Dados Pessoais", Dados_Clientes);
+        Painel_Guias.addTab("Dados Pessoais", Dados_Clientes);
 
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sistema/images/Novo.png"))); // NOI18N
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -380,6 +386,11 @@ public class FormularioClientes extends javax.swing.JFrame {
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sistema/images/Cancelar (2).png"))); // NOI18N
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sistema/images/Excluir.png"))); // NOI18N
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sistema/images/Imprimir.png"))); // NOI18N
 
@@ -399,7 +410,7 @@ public class FormularioClientes extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tpConsultarClientes)
+                .addComponent(Painel_Guias)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(8, 8, 8)
@@ -423,7 +434,7 @@ public class FormularioClientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tpConsultarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Painel_Guias, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -467,7 +478,26 @@ public class FormularioClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+         Ultilitarios util = new Ultilitarios();
+        Clientes obj = new Clientes();
+        obj.setNome(txtNome.getText());
+        obj.setRg(txtRG.getText());
+        obj.setCpf(txtCPF.getText());
+        obj.setEmail(txtEmail.getText());
+        obj.setTelefone(txtTelefone.getText());
+        obj.setCelular(txtCelular.getText());
+        obj.setCep(txtCEP.getText());
+        obj.setEndereco(txtEndereco.getText());
+        obj.setNumero(Integer.parseInt(txtNumero.getText()));
+        obj.setComplemento(txtComplemento.getText());
+        obj.setBairro(txtBairro.getText());
+        obj.setCidade(txtCidade.getText());
+        obj.setEstado(cbUF.getSelectedItem().toString());
+        obj.setId(Integer.parseInt(txtCodigo.getText()));
+        
+        ClientesDao dao = new ClientesDao();
+        dao.Editar(obj);
+        util.limparTela(Dados_Clientes);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -561,6 +591,36 @@ public class FormularioClientes extends javax.swing.JFrame {
         }                   
     }//GEN-LAST:event_txtConsultarKeyReleased
 
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        Painel_Guias.setSelectedIndex(1);
+        txtCodigo.setText(tabela.getValueAt(tabela.getSelectedRow(),0).toString());
+        txtNome.setText(tabela.getValueAt(tabela.getSelectedRow(),1).toString());
+        txtRG.setText(tabela.getValueAt(tabela.getSelectedRow(),2).toString());
+        txtCPF.setText(tabela.getValueAt(tabela.getSelectedRow(),3).toString());
+        txtEmail.setText(tabela.getValueAt(tabela.getSelectedRow(),4).toString());
+        txtTelefone.setText(tabela.getValueAt(tabela.getSelectedRow(),5).toString());
+        txtCelular.setText(tabela.getValueAt(tabela.getSelectedRow(),6).toString());
+        txtCEP.setText(tabela.getValueAt(tabela.getSelectedRow(),7).toString());
+        txtEndereco.setText(tabela.getValueAt(tabela.getSelectedRow(),8).toString());
+        txtNumero.setText(tabela.getValueAt(tabela.getSelectedRow(),9).toString());
+        txtComplemento.setText(tabela.getValueAt(tabela.getSelectedRow(),10).toString());
+        txtBairro.setText(tabela.getValueAt(tabela.getSelectedRow(),11).toString());
+        txtCidade.setText(tabela.getValueAt(tabela.getSelectedRow(),12).toString());
+        cbUF.setSelectedItem(tabela.getValueAt(tabela.getSelectedRow(),13).toString());
+    }//GEN-LAST:event_tabelaMouseClicked
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        Clientes obj = new Clientes();
+        obj.setId(Integer.parseInt(txtCodigo.getText()));
+        
+        ClientesDao dao = new ClientesDao();
+        dao.Excluir(obj);
+        
+        Ultilitarios util = new Ultilitarios();
+        util.limparTela(Dados_Clientes);
+                
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -598,6 +658,7 @@ public class FormularioClientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Dados_Clientes;
+    private javax.swing.JTabbedPane Painel_Guias;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
@@ -627,7 +688,6 @@ public class FormularioClientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;
-    private javax.swing.JTabbedPane tpConsultarClientes;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCEP;
     private javax.swing.JFormattedTextField txtCPF;
